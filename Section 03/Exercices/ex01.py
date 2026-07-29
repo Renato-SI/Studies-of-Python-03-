@@ -1,4 +1,5 @@
 #Exercício Simples da Aula 40, Objetivo é apenas mostrar qual valor é maior sem conversão para int.
+
 primeiro_valor = input("Digite o Primeiro Valor: ")
 segundo_valor = input("Digite o Segundo Valor: ")
 
