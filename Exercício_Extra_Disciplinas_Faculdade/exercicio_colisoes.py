@@ -49,14 +49,14 @@ Casos do Y:
 - Retangulo_A abaixo do B: y1_b < y0_b
 """
 
-separados = (
+nao_colide_x_y = (
     x1_a < x0_b or
     x0_a > x1_b or
     y0_a > y1_b or
     y1_a < y0_b
 )
 
-if separados:
+if nao_colide_x_y:
     print(0)
 else:
     print(1)
