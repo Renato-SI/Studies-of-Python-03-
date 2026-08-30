@@ -25,6 +25,7 @@ def divisivel7(numero):
     
     elif numero < 14:
         return "n"
+    
     last_digit = numero % 10
     remaining_digits = numero // 10
     new_number = (last_digit * 5) + remaining_digits
