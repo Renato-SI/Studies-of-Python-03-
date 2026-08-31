@@ -8,9 +8,6 @@ Métodos úteis:
     insert - Adiciona um item no índice escolhido
     pop - Remove do final ou do índice escolhido
     del - apaga um índice
-    clear - limpa a lista
-    extend - estende a lista
-    + - concatena listas
 Create Read Update   Delete
 Criar, ler, alterar, apagar = lista[i] (CRUD)
 """
