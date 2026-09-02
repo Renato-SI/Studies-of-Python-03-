@@ -24,8 +24,8 @@ contrário disso:
 O primeiro dígito do CPF é 7
 """
 
-def validar_digito01cpf(cpf):
-    nove_digits = cpf[:9]
+def validar_cpf(cpf_user):
+    nove_digits = cpf_user[:9]
 
     conta_digits = 0
     contador01 = 10
@@ -36,12 +36,33 @@ def validar_digito01cpf(cpf):
     conta_final = (10 * conta_digits) % 11
 
     if conta_final > 9:
-        digito_01 = '0'
+        digito_01 = 0
     else:
-        digito_01 = str(conta_final)
+        digito_01 = conta_final
 
-    return digito_01
+    dez_digits = nove_digits + str(digito_01)
 
-print(validar_digito01cpf('36536516621')) # Validado
-print(validar_digito01cpf('85932200880')) # Validado
-print(validar_digito01cpf('16772962591')) # Validad
+    conta_digits02 = 0
+    contador02 = 11
+    for digit in dez_digits:
+        conta_digits02 += contador02 * int(digit)
+        contador02 -= 1
+
+    conta_final02 = (10 * conta_digits02) % 11
+
+    if conta_final02 > 9:
+        digito_02 = 0
+    else:
+        digito_02 = conta_final02
+
+    cpf_calculado = f'{nove_digits}{digito_01}{digito_02}'
+    if cpf_user == cpf_calculado:
+        return f'O CPF: {cpf_user} é Válido'
+
+    else:
+        return f'O CPF: {cpf_user} não é Válido'
+    
+print(validar_cpf('47869994820'))  #Validado
+print(validar_cpf('48530330765'))  #Validado
+print(validar_cpf('86819936664'))  #Validado
+print(validar_cpf('54259728148'))  #Validado
