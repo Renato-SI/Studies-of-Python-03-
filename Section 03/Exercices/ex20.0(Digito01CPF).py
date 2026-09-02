@@ -1,34 +1,24 @@
 """
-Calculo do primeiro dígito do CPF
-CPF: 746.824.890-70
-Colete a soma dos 9 primeiros dígitos do CPF
-multiplicando cada um dos valores por uma
-contagem regressiva começando de 10
+Calcula os dois dígitos verificadores de um CPF.
 
-Ex.:  746.824.890-70 (746824890)
-   10  9  8  7  6  5  4  3  2
-*  7   4  6  8  2  4  8  9  0
-   70  36 48 56 12 20 32 27 0
+O primeiro dígito é calculado a partir dos 9 primeiros números,
+multiplicados por uma contagem regressiva de 10 a 2.
 
-Somar todos os resultados: 
-70+36+48+56+12+20+32+27+0 = 301
-Multiplicar o resultado anterior por 10
-301 * 10 = 3010
-Obter o resto da divisão da conta anterior por 11
-3010 % 11 = 7
-Se o resultado anterior for maior que 9:
-    resultado é 0
-contrário disso:
-    resultado é o valor da conta
+O segundo dígito utiliza os 9 primeiros números mais o primeiro
+dígito, multiplicados por uma contagem regressiva de 11 a 2.
 
-O primeiro dígito do CPF é 7
+Em ambos os casos, a soma é multiplicada por 10 e o resto da
+divisão por 11 determina o dígito verificador. Caso o resultado
+seja maior que 9, o dígito será 0.
 """
 
 def validar_cpf(cpf_user):
+    # PARTE DO DÍGITO 01
     nove_digits = cpf_user[:9]
 
     conta_digits = 0
     contador01 = 10
+
     for digito in nove_digits:
         conta_digits += contador01 * int(digito)
         contador01 -= 1
@@ -40,10 +30,12 @@ def validar_cpf(cpf_user):
     else:
         digito_01 = conta_final
 
+    # PARTE DO DÍGITO 02
     dez_digits = nove_digits + str(digito_01)
 
     conta_digits02 = 0
     contador02 = 11
+
     for digit in dez_digits:
         conta_digits02 += contador02 * int(digit)
         contador02 -= 1
@@ -55,14 +47,28 @@ def validar_cpf(cpf_user):
     else:
         digito_02 = conta_final02
 
+    # VALIDAR O CPF FORMADO
     cpf_calculado = f'{nove_digits}{digito_01}{digito_02}'
+
     if cpf_user == cpf_calculado:
-        return f'O CPF: {cpf_user} é Válido'
+        return (
+            f'O CPF: {cpf_user[:3]}.{cpf_user[3:6]}.'
+            f'{cpf_user[6:9]}-{digito_01}{digito_02} é Válido')
 
     else:
-        return f'O CPF: {cpf_user} não é Válido'
+        return (
+            f'O CPF: {cpf_user[:3]}.{cpf_user[3:6]}.'
+            f'{cpf_user[6:9]}-{digito_01}{digito_02} não é Válido')
     
-print(validar_cpf('47869994820'))  #Validado
-print(validar_cpf('48530330765'))  #Validado
-print(validar_cpf('86819936664'))  #Validado
-print(validar_cpf('54259728148'))  #Validado
+print(validar_cpf(
+    '478.699.948-20'.replace('-', '').replace('.', '')
+    )) 
+print(validar_cpf(
+    '485.303.307-65'.replace('-', '').replace('.', '')
+    ))  
+print(validar_cpf(
+    '868.199.366-64'.replace('-', '').replace('.', '')
+    ))
+print(validar_cpf(
+    '54259728148'.replace('-', '').replace('.', '')
+    ))  
