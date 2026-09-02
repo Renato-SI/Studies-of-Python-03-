@@ -23,3 +23,25 @@ contrário disso:
 
 O primeiro dígito do CPF é 7
 """
+
+def validar_digito01cpf(cpf):
+    nove_digits = cpf[:9]
+
+    conta_digits = 0
+    contador01 = 10
+    for digito in nove_digits:
+        conta_digits += contador01 * int(digito)
+        contador01 -= 1
+
+    conta_final = (10 * conta_digits) % 11
+
+    if conta_final > 9:
+        digito_01 = '0'
+    else:
+        digito_01 = str(conta_final)
+
+    return digito_01
+
+print(validar_digito01cpf('36536516621')) # Validado
+print(validar_digito01cpf('85932200880')) # Validado
+print(validar_digito01cpf('16772962591')) # Validad
