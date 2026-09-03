@@ -16,10 +16,11 @@ def pesquisa_binaria(lista, inicio, fim, item, contador=0):
     if inicio > fim:
         return contador
 
-    contador += 1
     meio = ((inicio + fim) // 2)
+    contador += 1
+    size = (fim - inicio) + 1
 
-    if ((fim - inicio) + 1) % 2 == 0:
+    if size % 2 == 0:
         meio += 1
 
     if lista[meio] == item:
