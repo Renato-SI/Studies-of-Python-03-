@@ -1,4 +1,13 @@
 def Quicksort(vetor):
+    """
+    Implementação do Algoritmo de Ordenação QuickSort que utiliza o Método (Dividir para Conquistar)
+
+    Complexidade:
+
+    Pior Caso: O(n^2)
+    Caso Médio = O(n log n)
+    Melhor Caso = O(n log n)
+    """
     if len(vetor) <= 1:
         return vetor
 
